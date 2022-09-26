@@ -114,3 +114,113 @@ const signatures = await Promise.all(
   ),
 );
 ```
+
+## API Flows
+
+- Creating Dare SSO account
+
+We assume that you already had Dare Account from SSO service
+
+- Asking DNFT team to have API key for dare protocol services
+
+- Using API key to call api to get access token
+
+```
+curl -X 'POST' \
+  'https://protocol-stg.dareplay.io/clients/set-token/${API_KEY}' \
+  -H 'accept: */*' \
+  -d ''
+```
+
+- Using access token to import NFT contract and NFTs (these apis are just temporarily, will be considered in near future)
+
+```
+curl -X 'POST' \
+  'https://protocol-stg.dareplay.io/nfts/import-nft-contract' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer ${access_token}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "tokenAddress": "${nft_contract_address}"
+}'
+```
+
+```
+curl -X 'POST' \
+  'https://protocol-stg.dareplay.io/nfts/import-nfts' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer ${access_token}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "tokenAddress": "${nft_contract_address}",
+  "tokens": [
+    {
+      "tokenId": "${token_id}",
+      "ownerAddress": "${current_owner_of_token_id}"
+    }
+  ]
+}'
+```
+
+- Using access token to call api to add schema and webhook url
+
+`schema` is metadata of nft result from game's backend
+
+```
+curl -X 'POST' \
+  'https://protocol-stg.dareplay.io/providers/update-nft-schema' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer ${access_token}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "schema": {},
+  "tokenAddress": "${nft_contract_address}",
+  "webhook": "{webhook_url}"
+}'
+```
+
+- Using access token to call api to get signed payload
+
+`metadata` object is the result from `generating-payload.ts` example
+`tokenData` is the result of metadata of nft from game's backend, for ex:
+
+```js
+  {
+    level: '0x123',
+    star: '0x234',
+    title: 'demo',
+    xyz: [1, 2, 3],
+  }
+```
+
+```
+curl -X 'POST' \
+  'https://protocol-stg.dareplay.io/protocols/update-metadata-nft' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer ${access_token}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "tokenId": "string",
+  "nftContractAddress": "string",
+  "metadata": {
+    "calls": [
+      {}
+    ],
+    "nonces": [
+      "string"
+    ],
+    "signatures": [
+      {}
+    ]
+  },
+  "tokenData": {}
+}'
+```
+
+- Using api to get nft token detail with metadata
+
+```
+curl -X 'GET' \
+  'https://protocol-stg.dareplay.io/nfts/${nft_contract_address}/id/${token_id}' \
+  -H 'accept: */*'
+```
