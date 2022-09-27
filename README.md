@@ -226,6 +226,54 @@ curl -X 'POST' \
 }'
 ```
 
+- Step 7.5: Calling from web3 client
+
+Keymanager address: `0x4265c3fC37973ee042F3A9849d99B32C71964CBC`
+
+Calling function via
+
+```
+{
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "rootSignature",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "signatures",
+        "type": "bytes[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "nonces",
+        "type": "uint256[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "internalType": "struct IAggregatable.Call[]",
+        "name": "calls",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "aggregateRelayCall",
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+```
+
 - Step 8: Using api to get nft token detail with metadata
 
 ```

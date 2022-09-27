@@ -66,41 +66,10 @@
   {
     "inputs": [
       {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "target",
-            "type": "address"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "internalType": "struct IAggregatable.Call[]",
-        "name": "calls",
-        "type": "tuple[]"
-      }
-    ],
-    "name": "aggregate",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "blockNumber",
-        "type": "uint256"
+        "internalType": "bytes",
+        "name": "rootSignature",
+        "type": "bytes"
       },
-      {
-        "internalType": "bytes[]",
-        "name": "returnData",
-        "type": "bytes[]"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
       {
         "internalType": "bytes[]",
         "name": "signatures",
@@ -143,29 +112,10 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "target_",
-        "type": "address"
+        "internalType": "bytes",
+        "name": "rootSignature_",
+        "type": "bytes"
       },
-      {
-        "internalType": "bytes",
-        "name": "data_",
-        "type": "bytes"
-      }
-    ],
-    "name": "execute",
-    "outputs": [
-      {
-        "internalType": "bytes",
-        "name": "",
-        "type": "bytes"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
       {
         "internalType": "bytes",
         "name": "signature_",
