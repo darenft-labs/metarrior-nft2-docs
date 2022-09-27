@@ -131,7 +131,7 @@ We assume that you already had Dare Account from SSO service, if not, you have t
 
 ```
 curl -X 'POST' \
-  'https://protocol-stg.dareplay.io/clients/set-token/${API_KEY}' \
+  'https://protocol-stg.dareplay.io/auth/api-key/${API_KEY}' \
   -H 'accept: */*' \
   -d ''
 ```
