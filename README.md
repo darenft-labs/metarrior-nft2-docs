@@ -117,13 +117,17 @@ const signatures = await Promise.all(
 
 ## API Flows
 
-- Creating Dare SSO account
+- Step 1: Creating Dare SSO account:
 
-We assume that you already had Dare Account from SSO service
+```
+https://sso-stg.dareplay.io/login
+```
 
-- Asking DNFT team to have API key for dare protocol services
+We assume that you already had Dare Account from SSO service, if not, you have to sign up then ask Dare team to approve the account
 
-- Using API key to call api to get access token
+- Step 2: Asking DNFT team to have API key for dare protocol services
+
+- Step 3: Using API key to call api to get access token
 
 ```
 curl -X 'POST' \
@@ -132,18 +136,8 @@ curl -X 'POST' \
   -d ''
 ```
 
-- Using access token to import NFT contract and NFTs (these apis are just temporarily, will be considered in near future)
-
-```
-curl -X 'POST' \
-  'https://protocol-stg.dareplay.io/nfts/import-nft-contract' \
-  -H 'accept: */*' \
-  -H 'Authorization: Bearer ${access_token}' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "tokenAddress": "${nft_contract_address}"
-}'
-```
+- Step 4: Provide NFT contract address to Dare team to support some events such as `Transfer`
+- Step 5: Using access token to import NFTs (these apis are just temporarily, will be considered in near future)
 
 ```
 curl -X 'POST' \
@@ -162,7 +156,7 @@ curl -X 'POST' \
 }'
 ```
 
-- Using access token to call api to add schema and webhook url
+- Step 6: Using access token to call api to add schema and webhook url
 
 `schema` is metadata of nft result from game's backend
 
@@ -179,7 +173,7 @@ curl -X 'POST' \
 }'
 ```
 
-- Using access token to call api to get signed payload
+- Step 7: Using access token to call api to get signed payload
 
 `metadata` object is the result from `generating-payload.ts` example
 `tokenData` is the result of metadata of nft from game's backend, for ex:
@@ -217,7 +211,7 @@ curl -X 'POST' \
 }'
 ```
 
-- Using api to get nft token detail with metadata
+- Step 8: Using api to get nft token detail with metadata
 
 ```
 curl -X 'GET' \
