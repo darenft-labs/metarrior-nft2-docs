@@ -159,6 +159,21 @@ curl -X 'POST' \
 - Step 6: Using access token to call api to add schema and webhook url
 
 `schema` is metadata of nft result from game's backend
+`webhook` is endpoint of webhook from game server, it should be something like this:
+
+```
+curl -X 'POST' \
+  '${webhook}' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "key1": value1,
+  "key2": value2,
+  "eventType": "Some event string"
+}'
+```
+
+When updating metadata, `eventType` will be `UPDATE_METADATA`
 
 ```
 curl -X 'POST' \
